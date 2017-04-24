@@ -909,6 +909,17 @@
 <wire x1="-22.86" y1="17.78" x2="-35.56" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="N$12" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PB_13"/>
+<wire x1="17.78" y1="-22.86" x2="20.32" y2="-22.86" width="0.1524" layer="91"/>
+<wire x1="20.32" y1="-22.86" x2="20.32" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="20.32" y1="35.56" x2="0" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="0" y1="35.56" x2="0" y2="50.8" width="0.1524" layer="91"/>
+<pinref part="U$5" gate="G$1" pin="SG"/>
+<wire x1="0" y1="50.8" x2="2.54" y2="50.8" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
