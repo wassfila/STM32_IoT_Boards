@@ -21,3 +21,4 @@ STM32_RF_PIO/cam/
 *.pro
 *.eps
 *.lck
+*.b##
