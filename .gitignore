@@ -16,7 +16,6 @@
 *.s#7
 *.s#8
 *.s#9
-STM32_RF_PIO/cam/
 *.job
 *.pro
 *.eps
