@@ -76,10 +76,10 @@ void TestCom(Serial&ser)
 	int val = 55555;//[-1,+1] => [0, 1]
 	uint8_t data[7];
 	data[0] = 5;	//size is 5
-	data[1] = 'S';	//Protocol 'Servos'
+	data[1] = 4;	//Protocol 'Servos'
 	data[2] = 1;	//Servo Id = '1'
-	data[3] = val / 256;	//16 bit val
-	data[4] = val % 256;
+	data[3] = 0x55;	//16 bit val
+	data[4] = 0x44;
 	//printf_tab2((const char*)&data[3],2);
 	utl::crc_set(data);
 	printf_tab((const char*)data,7);
