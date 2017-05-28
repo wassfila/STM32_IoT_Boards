@@ -86,6 +86,20 @@ void TestCom(Serial&ser)
 	ser.send((const char*)(data),5+2);
 }
 
+void set_pios(Serial&ser, int val)
+{
+	uint8_t data[7];
+	data[0] = 5;	//size is 5
+	data[1] = 'P';	//Protocol 'PIOs'
+	data[2] = val & 0xFF;
+	data[3] = (val>>8) & 0xFF;
+	data[4] = (val>>16) & 0xFF;
+	utl::crc_set(data);
+	printf_tab((const char*)data,7);
+	ser.send((const char*)(data),5+2);
+}
+
+
 
 int main( int argc, char** argv ) 
 {
@@ -104,22 +118,12 @@ int main( int argc, char** argv )
 	//std::cout << MAGENTA << "Colored " << CYAN << "Text" << RESET << std::endl;
 	
 	usleep(1000000);
-	TestCom(ser);
+	set_pios(ser,0x00FFFFFF);
+	usleep(1000000);
+	set_pios(ser,0x00000000);
 
 	while (1) 
 	{
-		std::cout << CYAN;
-		//Update the Joystick input
-		#if 0
-		if(joy.update())//multiple events will be filtered, only last would appear afterwards
-		{
-			//joy.printUpdates();
-		}
-		MapAxis(joy.getAxis(5),1,ser);//Up
-		joy.consumeAll();
-		#endif
-	
-		
 		std::cout << RESET;
 		//display Received log
 		if(ser.update())
