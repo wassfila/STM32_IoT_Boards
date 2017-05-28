@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.1.1">
+<eagle version="8.2.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -94,7 +94,7 @@
 <text x="19.05" y="6.35" size="1.016" layer="21">GND</text>
 <text x="4.445" y="6.35" size="1.016" layer="21">+D</text>
 <text x="2.54" y="15.24" size="1.778" layer="21">STM32-ULN-RF</text>
-<text x="36.83" y="11.43" size="2.54" layer="22" rot="MR0">github.com/wassfila/</text>
+<text x="60.96" y="11.43" size="2.54" layer="22" rot="MR0">github.com/wassfila/</text>
 <text x="17.78" y="2.2225" size="1.778" layer="22" rot="MR0">Gnd</text>
 <text x="21.59" y="17.4625" size="1.778" layer="22" rot="MR0">3v3</text>
 <text x="57.15" y="4.1275" size="1.778" layer="22" rot="MR0">Tx</text>

@@ -1,5 +1,5 @@
 [Eagle]
-Version="08 01 01"
+Version="08 02 00"
 Platform="Windows"
 Globals="Globals"
 Desktop="Desktop"
@@ -368,7 +368,7 @@ UsedLibrary="D:/Projects/eagle/MyLib/wf-comp.lbr"
 
 [Win_1]
 Type="Control Panel"
-Loc="103 500 2074 1881"
+Loc="1256 417 3557 1907"
 State=2
 Number=0
 
