@@ -22,12 +22,23 @@ void the_ticker()
 
 void rf_message_received(uint8_t *data,uint8_t size)
 {
+    uint8_t length = data[0];
     rasp.printf("rf>Rx message Handler : 0x");
-    for(int i = 0; i < size; i++)
+    for(int i = 0; i < length; i++)
     {
         rasp.printf(" %02x",data[i]);
     }
     rasp.printf("\r\n");
+    if(data[1] == 'P')
+    {
+        int val = data[4];
+        val <<= 8;
+        val |= data[3];
+        val <<= 8;
+        val |= data[2];
+        rasp.printf("PIO : 0x%08x\n",val);
+        myBoard.write(val);
+    }
 }
 
 void init()
