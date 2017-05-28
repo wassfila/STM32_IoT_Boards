@@ -11,5 +11,5 @@
 * Sensors node already working fine as an RF-Dongle (sensors not tested yet)
 * Soldering order of nrf and bluepill is very important !!! Soldering order strategy required as it is double sided board.
 
-#Git Submodules
+# Git Submodules
 * Still struggling with submodules, do not forget either of recursive clone, or manual add of submodule for pilibs
