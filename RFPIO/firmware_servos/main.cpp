@@ -3,7 +3,12 @@
 #include "rfmesh.h"
 #include "suart.h"
 
-#include "rfpio.h"
+#include "rfservos.h"
+
+rfservos myBoard;
+
+//Servo servo2(PA_2);
+//Servo servo3(PA_3);
 
 Serial   rasp(PB_10, PB_11, 115200);
 //DigitalOut myled(PC_13);
@@ -11,8 +16,6 @@ Ticker tick_call;
 //nRF Modules 1:Gnd, 2:3.3v, 3:ce,  4:csn, 5:sck, 6:mosi, 7:miso, 8:irq 
 //RFPIO Layout !!!!
 RfMesh mesh(&rasp,           PA_5,  PB_12, PB_13, PB_15, PB_14, PA_4);
-
-rfpio myBoard(&rasp);
 
 void the_ticker()
 {
@@ -69,6 +72,13 @@ int main()
 
     while(1) 
     {
+        //servo2 = 1;
+        //servo3 = 1;
+        myBoard.write(0x00FFFFFF);
+        wait(1.0);
+        //servo2 = 0;
+        //servo3 = 0;
+        myBoard.write(0x00000000);
         wait(1.0);
     }
 }
