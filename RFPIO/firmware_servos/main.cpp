@@ -29,15 +29,19 @@ void rf_message_received(uint8_t *data,uint8_t size)
         rasp.printf(" %02x",data[i]);
     }
     rasp.printf("\r\n");
-    if(data[1] == 'P')
-    {
-        int val = data[4];
-        val <<= 8;
-        val |= data[3];
-        val <<= 8;
-        val |= data[2];
-        rasp.printf("PIO : 0x%08x\n",val);
-        myBoard.write(val);
+    if(data[1] == 'S')
+    {//id,PosH,PosL - 
+        int nb_serv = (length - 2)/3;
+        uint8_t *p=&data[2];
+        for(int i=0;i<nb_serv;i++)
+        {
+            uint8_t id =  *(p++);
+            uint16_t val = *(p++);
+            val <<= 8;
+            val |= *(p++);
+            rasp.printf("Servo %d @ %d\n",id,val);
+            myBoard.update(id,val);
+        }
     }
 }
 
@@ -57,21 +61,27 @@ void init()
 
     mesh.attach(&rf_message_received,RfMesh::CallbackType::Message);
 
-    myBoard.write(0xFFF);
-    wait(1.0);
-    myBoard.write(0x000);
-    wait(1.0);
 }
+
 
 int main() 
 {
     init();
 
+    myBoard.write(0x000);
+
+    /*uint32_t reg_val = AFIO->MAPR;
+    rasp.printf("AFIO->MAPR : 0x%x03\n",reg_val);
+    reg_val |= ( (1<<8) | (1<<9) );
+    AFIO->MAPR = reg_val;
+    reg_val = AFIO->MAPR;
+    rasp.printf("AFIO->MAPR : 0x%x03\n",reg_val);*/
+
     while(1) 
     {
-        myBoard.write(0xFFF);
+        /*myBoard.write(0xFFF);
         wait(1.0);
-        myBoard.write(0x000);
+        myBoard.write(0x000);*/
         wait(1.0);
     }
 }
