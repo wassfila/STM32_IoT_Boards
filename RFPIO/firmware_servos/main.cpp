@@ -5,7 +5,11 @@
 
 #include "rfservos.h"
 
-rfservos myBoard;
+//rfservos myBoard;
+//Servo ser_m11(PA_8);
+PwmOut ser_m11(PA_8);
+
+DigitalOut clear_m13(PA_10);
 
 Serial   rasp(PB_10, PB_11, 115200);
 DigitalOut myled(PC_13);
@@ -23,12 +27,13 @@ void the_ticker()
 void rf_message_received(uint8_t *data,uint8_t size)
 {
     uint8_t length = data[0];
-    rasp.printf("rf>Rx message Handler : 0x");
+    /*rasp.printf("rf>Rx message Handler : 0x");
     for(int i = 0; i < length; i++)
     {
         rasp.printf(" %02x",data[i]);
     }
     rasp.printf("\r\n");
+    */
     if(data[1] == 'S')
     {//id,PosH,PosL - 
         int nb_serv = (length - 2)/3;
@@ -37,10 +42,12 @@ void rf_message_received(uint8_t *data,uint8_t size)
         {
             uint8_t id =  *(p++);
             uint16_t val = *(p++);
-            val <<= 8;
+            val <<= 8;              //MSB first
             val |= *(p++);
+            //myBoard.update(id,val);
+            //ser_m11 = ((float)val) / 65535;
+            ser_m11.pulsewidth_us(val);
             rasp.printf("Servo %d @ %d\n",id,val);
-            myBoard.update(id,val);
         }
     }
 }
@@ -68,7 +75,13 @@ int main()
 {
     init();
 
-    myBoard.write(0x000);
+    clear_m13 = 0;
+
+    ser_m11.period_ms(20);
+    
+    ser_m11.pulsewidth_us(500);
+    //ser_m11 = 0.5;
+    //    myBoard.write(0x000);
 
     /*uint32_t reg_val = AFIO->MAPR;
     rasp.printf("AFIO->MAPR : 0x%x03\n",reg_val);

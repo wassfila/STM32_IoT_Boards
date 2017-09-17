@@ -40,7 +40,13 @@ void uart_message_received(uint8_t *data)
 
 void rf_message_received(uint8_t *data,uint8_t size)
 {
-    rasp.printf("stm32_dongle>rf> Rx message (%d bytes) unused in dongle\n",size);
+    //rasp.printf("stm32_dongle>rf> Rx message (%d bytes) unused in dongle\n",size);
+    rasp.printf("RX(%d)> ",size);
+    for(int i=0;i<size;i++)
+    {
+        rasp.printf("0x%0x ",data[i]);
+    }
+    rasp.printf("\n");
 }
 
 void init()
@@ -51,7 +57,7 @@ void init()
 
     mesh.init();//left to the user for more flexibility on memory management
 
-    mesh.nrf.selectChannel(22);
+    mesh.nrf.selectChannel(2);
 
     mesh.attach(&rf_message_received,RfMesh::CallbackType::Message);
 
@@ -68,7 +74,7 @@ int main()
         wait_ms(1);
         if(got_message)
         {
-            rasp.printf("stm32_dongle> start transmission\n");
+            //rasp.printf("stm32_dongle> start transmission\n");
             mesh.nrf.start_transmission(payload,payload[0]);
             got_message = false;
         }
