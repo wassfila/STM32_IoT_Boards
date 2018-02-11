@@ -1,0 +1,11 @@
+.temp/
+BUILD/
+*.pyc
+mbed-os/
+nrf-mesh/
+Servo/
+safe-uart/
+crc/
+rfpio-board/
+.settings/
+.vscode/

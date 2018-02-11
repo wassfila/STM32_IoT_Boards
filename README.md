@@ -1,5 +1,15 @@
 # STM32_IoT_Boards
-PCB designs with STM32 chips and expansions for available boards
+* Expansion boards, PCB designs with STM32 chips.
+* firmware running mbed-os
+* simplest mesh ever with c++ driver libraries, rf-mesh lib using an nrf24l01+ lib
 
 # Progress
-* These PCBs have not been tested yet and shared for review and improvement purposes.
+* PCBs are under test
+* 24 PIO ULN on/off test successfull
+* Still no noticed design issues
+* Current struggle with the PA3,PA2 ports that do not output the PWM as configured for a default UART
+* Sensors node already working fine as an RF-Dongle (sensors not tested yet)
+* Soldering order of nrf and bluepill is very important !!! Soldering order strategy required as it is double sided board.
+
+# Git Submodules
+* Still struggling with submodules, do not forget either of recursive clone, or manual add of submodule for pilibs
